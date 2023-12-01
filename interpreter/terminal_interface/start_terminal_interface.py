@@ -1,5 +1,7 @@
 """
 
+
+
 Module start_terminal_interface.
 
 This module provides the entry point to the Open Interpreter's terminal interface which facilitates user interactions with the language model. It processes command line arguments provided by the user, sets up configuration options, checks for updates, and initializes conversations.
@@ -132,20 +134,6 @@ arguments = [
 
 
 def start_terminal_interface(interpreter):
-    """
-    Parses command-line arguments to configure an interpreter instance and starts the chat session, open configuration, or other specified operations.
-    This function is designed to handle the setup and execution of various command-line parameters that adjust the
-    settings for the Open Interpreter before initializing the chat session. This setup includes handling of arguments for debugging,
-    local vs. remote model usage, fast mode (preconfigured model), version information requests, and launching the conversation navigator.
-    Args:
-        interpreter (Interpreter): The interpreter instance to be configured and/or to start the session.
-    Raises:
-        FileNotFoundError: May raise an error if the specified configuration file or conversations directory does
-                            not exist or cannot be opened.
-        OSError: May raise an error if there are issues opening the configuration file or conversations directory
-                 on specific operating systems.
-        json.JSONDecodeError: May raise an error when attempting to parse the configurations from a JSON-like string if it is malformed.
-    """
 
     parser = argparse.ArgumentParser(description="Open Interpreter")
 

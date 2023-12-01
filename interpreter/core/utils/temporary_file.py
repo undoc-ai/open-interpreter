@@ -1,5 +1,7 @@
 """
 
+
+
 Module for handling creation and cleanup of temporary files.
 
 This module provides functions to easily create a temporary file with specified
@@ -40,19 +42,6 @@ import tempfile
 
 
 def cleanup_temporary_file(temp_file_name, verbose=False):
-    """
-        Removes a temporary file from the file system.
-        This function attempts to remove the specified temporary file. If the 'verbose' flag is set to True, it
-        also prints messages about the cleanup process. In case of failure during file removal, it catches the
-        exception and prints an error message, along with the exception details.
-        Args:
-            temp_file_name (str): The name or path of the temporary file to be removed.
-            verbose (bool, optional): A flag that indicates whether to print additional information about the
-                cleanup process. Defaults to False.
-        Raises:
-            Exception: Catches any exception that occurs while attempting to remove the temporary file and
-                prints the exception message.
-    """
 
     try:
         # clean up temporary file

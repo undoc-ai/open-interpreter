@@ -1,5 +1,7 @@
 """
 
+
+
 A module for interpreting and executing code in a subprocess. This module provides a class `SubprocessCodeInterpreter` which
 inherits from `BaseCodeInterpreter`. It facilitates running of arbitrary code in an isolated process, handling standard output and
 standard error streams, and terminating the process when necessary. The interpreter also manages an output queue where all the
@@ -97,17 +99,6 @@ class SubprocessCodeInterpreter(BaseCodeInterpreter):
         return None
 
     def detect_end_of_execution(self, line):
-        """
-            Detects the end of an execution phase in a given text line.
-            This method examines the supplied string to determine whether it signifies the end of an
-            execution phase. The criteria for this detection are not specified in the signature and
-            therefore should be documented separately, potentially in the class owning this method.
-            Args:
-                line (str): A string to analyze for an end-of-execution marker.
-            Returns:
-                None: Currently, this method does not return a value and its side effects are not
-                described. This should be updated if the method's behavior changes.
-        """
         return None
 
     def line_postprocessor(self, line):
@@ -145,16 +136,6 @@ class SubprocessCodeInterpreter(BaseCodeInterpreter):
         self.process.stdout.close()
 
     def start_process(self):
-        """
-        Start a new process and handle its output streams in separate threads.
-        This function initializes a new subprocess with the command specified by the instance's `start_cmd` attribute. It sets up the process environment with a defined 'PYTHONIOENCODING' to ensure UTF-8 encoding of the input and output streams. Once the process is started, it spawns two daemon threads for handling the standard output and error streams. The threads are tasked with reading lines from these streams and processing them accordingly.
-        Raises:
-            Exception: If there's an issue terminating the existing process before starting a new one.
-        Attributes:
-            process (subprocess.Popen): The process being managed. It's initialized here if it didn't already exist.
-            start_cmd (str): The command used to start the new process.
-            handle_stream_output (method): The method used to handle the output and error streams in separate threads.
-        """
         if self.process:
             self.terminate()
 

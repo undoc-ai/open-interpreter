@@ -1,5 +1,7 @@
 """
 
+
+
 Module for providing a subprocess-based code interpreter for the R programming language.
 
 The R module extends the functionality of SubprocessCodeInterpreter to specifically handle the execution
@@ -210,12 +212,4 @@ cat("##end_of_execution##\\n");
         return None
 
     def detect_end_of_execution(self, line):
-        """
-        Detects if the given line indicates the end of execution or contains an execution error.
-        This method checks if the provided line of text includes specific markers that represent the end of execution or an error during execution. It searches for the presence of '##end_of_execution##' or '##execution_error##' substrings within the given line.
-        Args:
-            line (str): The line of text to be checked for end-of-execution or execution-error markers.
-        Returns:
-            bool: True if the line contains either of the two specified markers, indicating the end of execution or an error, otherwise False.
-        """
         return "##end_of_execution##" in line or "##execution_error##" in line
