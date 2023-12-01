@@ -1,5 +1,7 @@
 """
 
+
+
 This module contains the `find_image_path` function, which scans a given text for any occurrence of an image file path and returns the longest existing path if matches are found.
 
 Functions:

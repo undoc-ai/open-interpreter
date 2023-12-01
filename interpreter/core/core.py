@@ -1,5 +1,7 @@
 """
 
+
+
 Module: core
 
 This module provides the core functionality for the Open Interpreter interpreter class. The Interpreter class allows for setting up, configuring, customizing, and running chat sessions with a large language model (LLM) that can execute code. The Interpreter class includes methods for starting a terminal interface, managing conversation history, and handling streaming chat sessions with the LLM.
@@ -217,22 +219,6 @@ class Interpreter:
         return self.messages
 
     def _streaming_chat(self, message=None, display=True):
-        """
-            Handles streaming chat for the interpreter by setting up and utilizing a language learning model (LLM).
-            This function prepares the interpreter for conversation by ensuring an LLM is connected. It supports various message formats
-            for input and manages the conversation's state and its history. It has a display mode that integrates with a terminal interface
-            for real-time interaction. When not in display mode, it functions as a generator yielding responses from the LLM.
-            Args:
-                message (Optional[Union[dict, str, list]], default=None): The incoming message to process.
-                    Can be a dict representing the message, a string containing the message content, or a list
-                    of previous conversation messages.
-                display (bool, default=True): Flags whether to display messages using the terminal interface.
-                    When True, redirects to terminal_interface for message display.
-            Yields:
-                Generator: A generator of processed messages or LLM responses, when not in display mode.
-            Raises:
-                Exception: If the `display` flag is False and no `message` is provided.
-        """
         # Setup the LLM
         if not self._llm:
             self._llm = setup_llm(self)
@@ -342,17 +328,4 @@ class Interpreter:
     # These functions are worth exposing to developers
     # I wish we could just dynamically expose all of our functions to devs...
     def generate_system_message(self):
-        """
-        Generates a comprehensive system message based on both static content and dynamic context-specific information.
-        Given an interpreter instance, this function constructs a detailed system message that concatenates default content from the
-        interpreter with dynamically gathered user information and relevant procedures. If errors occur while fetching procedures and
-        the interpreter is in debug mode, the function also prints the traceback.
-        Args:
-            interpreter (Interpreter): The interpreter instance providing the static content and the context
-              for generating the system message. It includes configuration and state information such as debug mode,
-              message history, and flags that indicate whether local execution and procedure inclusion are enabled.
-        Returns:
-            str: A formatted system message string that integrates the default interpreter content with
-              dynamic user and system information, and possible relevant procedures information.
-        """
         return generate_system_message(self)

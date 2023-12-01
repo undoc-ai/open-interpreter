@@ -1,5 +1,7 @@
 """
 
+
+
 The `python_vision` module provides an interface to run and manage Python code execution in a separate kernel for dynamic code analysis and output capturing. It facilitates the preprocessing of Python code, execution of code with live updates on the active line and captures various types of output such as textual output, error messages, and various media types. The module handles kernel management and communication with the Jupyter client kernel to execute code in an isolated environment.
 
 Classes:
@@ -127,20 +129,6 @@ class PythonVision:
             message_queue (queue.Queue): The queue to which the output and other messages will be put.
         """
         def iopub_message_listener():
-            """
-                Listens to messages from the iopub message channel and processes them accordingly.
-                This function continuously monitors the iopub channel for new messages, parses them based on their type, and
-                puts processed message content into a queue. It handles different types of messages including standard stream outputs,
-                execution errors, and data outputs like images, HTML, or JavaScript. In the case of stream outputs, it also detects
-                and processes lines indicating an active line marker. The function runs in an infinite loop, only breaking out
-                when a message indicating readiness is received from the shell channel.
-                Args:
-                    None
-                Returns:
-                    None
-                Raises:
-                    queue.Empty: If the get_msg call on the iopub channel times out without receiving a message.
-            """
             while True:
                 try:
                     msg = self.kc.iopub_channel.get_msg(timeout=0.1)
@@ -212,18 +200,6 @@ class PythonVision:
         listener_thread.join()
 
     def _capture_output(self, message_queue):
-        """
-            Generator function that continuously captures output from a message queue.
-            This function iterates over a message queue, yielding messages as they are available. Between each
-            retrieval attempt, the generator will sleep briefly. If no messages are found after a specific
-            timeout, the function will perform additional checks followed by short sleep intervals before
-            concluding that no further messages will be received and exiting the generator loop.
-            Args:
-                message_queue (queue.Queue): A queue from which messages will be read. The messages are
-                    expected to be placed into this queue by another part of the program.
-            Yields:
-                Any: The output messages retrieved from the message queue.
-        """
         while True:
             if not message_queue.empty():
                 yield message_queue.get()
@@ -242,17 +218,6 @@ class PythonVision:
                 break
 
     def _old_capture_output(self, message_queue):
-        """
-        Captures the output from a message queue until it's empty.
-        This function polls a provided message queue for messages until it is empty, then
-        returns the accumulated messages as a list. It uses `get_nowait` method to
-        attempt to get messages without blocking, immediately capturing any available
-        messages or skipping the iteration if the queue is empty.
-        Args:
-            message_queue (queue.Queue): The queue from which to get the messages.
-        Returns:
-            list: A list of accumulated messages from the queue.
-        """
         output = []
         while True:
             try:

@@ -1,6 +1,8 @@
 """
 
 
+
+
     Retrieves the relevant procedures as a string, based on the context provided by an interpreter's recent messages.
 
     This function fetches the procedures or updates the local procedure database if necessary, and then it generates a query

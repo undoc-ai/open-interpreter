@@ -1,5 +1,7 @@
 """
 
+
+
 Module that provides functions to gather and display debug information about the Python environment, host operating system, and an interpreter object.
 
     This module consists of various utility functions that retrieve information about the current runtime environment, the versions of Python and associated tools, and system resources such as CPU and RAM usage. Additionally, the module offers a function to extract details from a provided interpreter object, which includes information regarding its configuration and status.
@@ -106,13 +108,6 @@ def get_cpu_info():
 
 
 def get_ram_info():
-    """
-        Retrieves information about the system's RAM, including total, used, and free memory.
-        This function obtains memory usage statistics from the system using the `psutil` library.
-        It calculates the RAM in gigabytes for total, used, and free memory and returns a formatted string.
-        Returns:
-            str: A string reporting total, used, and free RAM, each to two decimal places.
-    """
     vm = psutil.virtual_memory()
     used_ram_gb = vm.used / (1024**3)
     free_ram_gb = vm.free / (1024**3)

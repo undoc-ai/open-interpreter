@@ -1,5 +1,7 @@
 """
 
+
+
 Module for running and handling PowerShell scripts using a subprocess interpreter pattern inheriting from SubprocessCodeInterpreter.
 
 This module defines a set of classes and functions to execute PowerShell (PS1) scripts, pre-process the code with additional scripting for line annotation and error capturing, and manage output and error streams from the underlying PowerShell process. The PowerShell class defined in this module is responsible for configuring the initial settings for the subprocess, handling stream outputs, and processing PowerShell code.
@@ -86,9 +88,6 @@ class PowerShell(SubprocessCodeInterpreter):
         return preprocess_powershell(code)
 
     def line_postprocessor(self, line):
-        """
-        Processes a given line of text and returns the processed line.
-        """
         return line
 
     def detect_active_line(self, line):

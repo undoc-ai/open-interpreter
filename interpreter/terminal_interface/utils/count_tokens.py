@@ -1,5 +1,7 @@
 """
 
+
+
 Module for counting tokens and calculating costs based on token usage in different models.
 
 This module provides functionality to count the number of tokens contained in texts and also calculates the cost
@@ -18,20 +20,6 @@ from litellm import cost_per_token
 
 
 def count_tokens(text="", model="gpt-4"):
-    """
-        Counts the number of tokens in a given text using a specified language model encoder.
-        This function takes a piece of text and the model name of the encoder to be used for tokenization.
-        It returns the count of tokens obtained from encoding the supplied text. This is particularly
-        useful when working with models like GPT-4, which have a maximum token limit for inputs.
-        Parameters:
-            text (str, optional): The text to be tokenized and counted. Defaults to an empty string.
-            model (str): The name of the model based on which the text will be tokenized. It expects
-                a string that represents any of the supported model names like 'gpt-4'.
-        Returns:
-            int: The number of tokens resulted from encoding the text.
-        Raises:
-            ValueError: If the provided model name does not correspond to any known encoders.
-    """
 
     encoder = tiktoken.encoding_for_model(model)
 
@@ -55,22 +43,6 @@ def token_cost(tokens=0, model="gpt-4"):
 
 
 def count_messages_tokens(messages=[], model=None):
-    """
-    Calculate the total number of tokens and their cost from a list of messages.
-    This function counts the number of tokens for each message in the provided list of messages. Each message can be a string or
-    a dictionary containing 'message', 'code', and/or 'output' fields, with respective contents to be tokenized. The token
-    count is aggregated, and the total cost is calculated based on the specified model, using a separate function to
-    determine the cost for the accumulated tokens.
-    Args:
-        messages (list, optional): A list of messages where each message can be either a string or a dictionary with possible
-                                     keys including 'message', 'code', and 'output'. Defaults to an empty list.
-        model (str, optional): The name of the language model for which the tokens are being counted, used to determine
-                               the cost per token. Defaults to None.
-    Returns:
-        tuple: A tuple with two elements:
-                 - The first element is an integer representing the total token count for all messages.
-                 - The second element is a float representing the total cost for all tokens, according to the model specified.
-    """
 
     tokens_used = 0
 
